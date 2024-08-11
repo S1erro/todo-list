@@ -1,0 +1,20 @@
+.selector {
+  width: 100%;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.selectorBtn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font: var(--font-l);
+  color: var(--main-color);
+}
+
+.selectorBtn:active {
+  color: #525050;
+}
