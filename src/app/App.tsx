@@ -1,8 +1,10 @@
 import React from 'react';
 import './styles/index.scss';
-import Navbar from "../widgets/Navbar";
-import OptionsSelector from "../widgets/OptionsSelector";
+import Navbar from "widgets/Navbar";
+import OptionsSelector from "widgets/OptionsSelector";
 import AppRouter from "./router/AppRouter";
+
+
 
 function App() {
   return (

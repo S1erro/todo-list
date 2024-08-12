@@ -1,6 +1,6 @@
 import React from 'react';
 import cls from './OptionsSelector.module.scss'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const OptionsSelector = () => {
     return (

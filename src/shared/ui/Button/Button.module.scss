@@ -5,16 +5,16 @@
   font: var(--font-m);
   color: var(--btn-text-color);
   cursor: pointer;
-}
 
-.Button:hover {
-  background-color: var(--btn-bg-color-hover);
+  &:hover {
+    background-color: var(--btn-bg-color-hover);
 
-  transition: background-color 0.1s ease-in;
-}
+    transition: background-color 0.1s ease-in;
+  }
 
-.Button:active {
-  background-color: var(--btn-bg-color-active);
+  &:active {
+    background-color: var(--btn-bg-color-active);
 
-  transition: background-color 0.05s ease-in;
+    transition: background-color 0.05s ease-in;
+  }
 }
