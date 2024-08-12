@@ -5,6 +5,7 @@ import ActiveTasks from "../../pages/ActiveTasks";
 import ClosedTasks from "../../pages/ClosedTasks";
 
 interface Task {
+    id: string;
     task: string;
     isClosed: boolean;
 }

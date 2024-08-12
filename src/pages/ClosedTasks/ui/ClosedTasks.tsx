@@ -6,6 +6,7 @@ import {ReactComponent as DeleteIcon} from 'shared/icons/trash.svg';
 import {ReactComponent as NoteIcon} from 'shared/icons/note.svg';
 
 interface Task {
+    id: string;
     task: string;
     isClosed: boolean;
 }
@@ -24,9 +25,9 @@ interface TasksProps {
 
 const ActiveTasks: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ...props}) => {
 
-    const checkboxChange = (index: number, isClosed: boolean) => {
-        const updatedTasks = tasks.map((task, i) =>
-            i === index ? {...task, isClosed: !task.isClosed} : task
+    const checkboxChange = (id: string, isClosed: boolean) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? {...task, isClosed: !task.isClosed} : task
         );
         setTasks(updatedTasks);
         isClosed
@@ -40,8 +41,8 @@ const ActiveTasks: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ..
             });
     };
 
-    const deleteTask = (indexToRemove: number, isClosed: boolean) => {
-        const updatedTasks = tasks.filter((_, index) => index !== indexToRemove);
+    const deleteTask = (idToRemove: string, isClosed: boolean) => {
+        const updatedTasks = tasks.filter(task => task.id !== idToRemove);
         setTasks(updatedTasks);
         isClosed
             ? setCount({
@@ -54,11 +55,11 @@ const ActiveTasks: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ..
             });
     }
 
-    const editTask = (index: number) => {
-        const updatedTasks = tasks.map((task, i) => {
-            if (i === index) {
+    const editTask = (id: string) => {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === id) {
                 const editedTask = prompt("Edit your task", task.task);
-                return {...task, task: editedTask || task.task};
+                return { ...task, task: editedTask || task.task};
             }
             return task;
         });
@@ -71,26 +72,27 @@ const ActiveTasks: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ..
                 .filter(taskObj => taskObj.isClosed)
                 .map((taskObj, index) => (
                     <div className={cls.taskContainer} key={index}>
+                        <input
+                            type="checkbox"
+                            checked={taskObj.isClosed}
+                            className={cls["radio-btn"]}
+                            onChange={() => checkboxChange(taskObj.id, taskObj.isClosed)}
+                        />
+
                         <div className={cls["radio-container"]}>
-                            <input
-                                type="checkbox"
-                                checked={taskObj.isClosed}
-                                className={cls["radio-btn"]}
-                                onChange={() => checkboxChange(index, taskObj.isClosed)}
-                            />
                             <p className={cls.task}>{taskObj.task}</p>
                         </div>
 
                         <div className={cls["btn-container"]}>
                             <Button
                                 customClassName={cls.btn}
-                                onClick={() => editTask(index)}
+                                onClick={() => editTask(taskObj.id)}
                             >
                                 <NoteIcon/>
                             </Button>
                             <Button
                                 customClassName={cn(cls.deleteBtn, cls.btn)}
-                                onClick={() => deleteTask(index, taskObj.isClosed)}
+                                onClick={() => deleteTask(taskObj.id, taskObj.isClosed)}
                             >
                                 <DeleteIcon/>
                             </Button>

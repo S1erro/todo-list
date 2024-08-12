@@ -68,7 +68,9 @@
 
 
 .radio-container {
+  word-break: break-word;
+  width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 }

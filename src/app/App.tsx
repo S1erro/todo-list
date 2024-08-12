@@ -3,32 +3,37 @@ import './styles/index.scss';
 import Navbar from "widgets/Navbar";
 import OptionsSelector from "widgets/OptionsSelector";
 import AppRouter from "./router/AppRouter";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
     interface Task {
+        id: string;
         task: string;
         isClosed: boolean;
     }
 
     const [tasks, setTasks] = useState<Task[]>([
-        {
-            task: "nonotest",
-            isClosed: true
-        },
-        {
-            task: "notest",
-            isClosed: false
-        },
-        {
-            task: "test",
-            isClosed: true
-        }
+        // {
+        //     id: uuidv4(),
+        //     task: "nonotest",
+        //     isClosed: true
+        // },
+        // {
+        //     id: uuidv4(),
+        //     task: "notest",
+        //     isClosed: false
+        // },
+        // {
+        //     id: uuidv4(),
+        //     task: "test",
+        //     isClosed: true
+        // }
     ])
 
     const [count, setCount] = useState({
-        closedCount: 2,
-        openCount: 1,
+        closedCount: 0,
+        openCount: 0,
     })
 
     const [option, setOption] = useState()

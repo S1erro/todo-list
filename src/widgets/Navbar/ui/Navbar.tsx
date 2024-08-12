@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import Button from 'shared/ui/Button/Button';
 import cls from './Navbar.module.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Task {
+    id: string;
     task: string;
     isClosed: boolean;
 }
@@ -29,7 +31,7 @@ const Navbar: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ...prop
 
     const addTask = () => {
         if (input !== '') {
-            const newTask: Task = {task: input, isClosed: false};
+            const newTask: Task = {id: uuidv4(), task: input, isClosed: false};
             setTasks([newTask, ...tasks]);
             setCount({
                 openCount: count.openCount + 1,
