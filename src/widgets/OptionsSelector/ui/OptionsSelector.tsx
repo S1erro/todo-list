@@ -1,32 +1,35 @@
-import React from 'react';
+import React, {FC} from 'react';
 import cls from './OptionsSelector.module.scss'
 import { Link } from 'react-router-dom';
-
-interface CountTasks  {
-    closedCount: number;
-    openCount: number;
-}
+import { Task } from "entities/task";
 
 interface OptionsProps {
-    countTasks: CountTasks;
+    tasks: Task[]
 }
 
-const OptionsSelector: React.FC<OptionsProps> = ({countTasks}) => {
+const OptionsSelector: FC<OptionsProps> = ({tasks}) => {
+
+    const closedTasksCount = tasks.filter(task => task.isClosed).length;
+
+    const openTasksCount = tasks.filter(task => !task.isClosed).length;
+
+    const allTasksCount = closedTasksCount + openTasksCount;
+
     return (
         <div className={cls.selector}>
             <Link to="/all-tasks">
                 <button className={cls.selectorBtn}>
-                    Все ({countTasks.closedCount + countTasks.openCount})
+                    Все ({allTasksCount})
                 </button>
             </Link>
             <Link to="/active-tasks">
                 <button className={cls.selectorBtn}>
-                    В работе ({countTasks.openCount})
+                    В работе ({openTasksCount})
                 </button>
             </Link>
             <Link to="/closed-tasks">
                 <button className={cls.selectorBtn}>
-                    Сделано ({countTasks.closedCount})
+                    Сделано ({closedTasksCount})
                 </button>
             </Link>
         </div>

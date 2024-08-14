@@ -1,27 +1,15 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import Button from 'shared/ui/Button/Button';
 import cls from './Navbar.module.scss';
 import { v4 as uuidv4 } from 'uuid';
-
-interface Task {
-    id: string;
-    task: string;
-    isClosed: boolean;
-}
-
-interface Count {
-    closedCount: number;
-    openCount: number;
-}
+import { Task } from "entities/task";
 
 interface TasksProps {
-    tasks: Task[];
-    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-    count: Count;
-    setCount: React.Dispatch<React.SetStateAction<Count>>;
+    tasks: Task[],
+    setTasks: React.Dispatch<Task[]>
 }
 
-const Navbar: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ...props}) => {
+const Navbar: FC<TasksProps> = ({ tasks, setTasks, ...props }) => {
 
     const [input, setInput] = useState<string>('')
 
@@ -33,10 +21,6 @@ const Navbar: React.FC<TasksProps> = ({tasks, setTasks, setCount, count, ...prop
         if (input !== '') {
             const newTask: Task = {id: uuidv4(), task: input, isClosed: false};
             setTasks([newTask, ...tasks]);
-            setCount({
-                openCount: count.openCount + 1,
-                closedCount: count.closedCount
-            })
             setInput('');
         } else {
             alert('Enter the task name')
