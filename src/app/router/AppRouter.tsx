@@ -5,7 +5,7 @@ import { Task } from "entities/task";
 
 interface RouterProps {
     tasks: Task[],
-    setTasks: React.Dispatch<Task[]>
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
 const AppRouter: FC<RouterProps> = ({ tasks, setTasks }) => {

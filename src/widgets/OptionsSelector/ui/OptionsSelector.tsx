@@ -1,13 +1,9 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import cls from './OptionsSelector.module.scss'
 import { Link } from 'react-router-dom';
 import { Task } from "entities/task";
 
-interface OptionsProps {
-    tasks: Task[]
-}
-
-const OptionsSelector: FC<OptionsProps> = ({tasks}) => {
+const OptionsSelector: FC<{ tasks: Task[] }> = ({tasks}) => {
 
     const closedTasksCount = tasks.filter(task => task.isClosed).length;
 

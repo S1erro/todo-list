@@ -1,0 +1,12 @@
+.btn {
+  padding: 20px 50px;
+  background-color: var(--btn-bg-color);
+
+  &:hover {
+    background-color: var(--btn-bg-color-hover);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-color-active);
+  }
+}
