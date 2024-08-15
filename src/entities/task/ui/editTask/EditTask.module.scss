@@ -1,0 +1,13 @@
+.btn {
+  width: var(--edit-delete-width);
+  height: var(--edit-delete-height);
+  background-color: var(--btn-bg-color);
+
+  &:hover {
+    background-color: var(--btn-bg-color-hover);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-color-active);
+  }
+}

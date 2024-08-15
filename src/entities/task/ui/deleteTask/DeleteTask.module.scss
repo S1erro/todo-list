@@ -1,0 +1,13 @@
+.deleteBtn {
+  background-color: #e55e5e;
+  width: var(--edit-delete-width);
+  height: var(--edit-delete-height);
+
+  &:hover {
+    background-color: #c25353;
+  }
+
+  &:active {
+    background-color: #a64c4c;
+  }
+}
