@@ -1,3 +1,7 @@
+h2 {
+  margin: 10px;
+  font: var(--font-l);
+}
 .btn {
   width: var(--edit-delete-width);
   height: var(--edit-delete-height);
@@ -10,4 +14,37 @@
   &:active {
     background-color: var(--btn-bg-color-active);
   }
+}
+
+.btnModal {
+  margin: 10px;
+  padding: 5px;
+  background-color: var(--btn-bg-color);
+
+  &:hover {
+    background-color: var(--btn-bg-color-hover);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-color-active);
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.input {
+  margin: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(1, 1, 1, 0.3);
+  font: var(--font-m);
 }

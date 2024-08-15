@@ -7,11 +7,10 @@ export const deleteTask = (idToRemove: string, tasks: Task[], setTasks: React.Di
     setTasks(updatedTasks);
 }
 
-export const editTask = (id: string, tasks: Task[], setTasks: React.Dispatch<React.SetStateAction<Task[]>>) => {
+export const editTask = (currentTask: Task | undefined, id: string, tasks: Task[], setTasks: React.Dispatch<React.SetStateAction<Task[]>>) => {
     const updatedTasks = tasks.map((task) => {
         if (task.id === id) {
-            const editedTask = prompt("Edit your task", task.task);
-            return { ...task, task: editedTask || task.task};
+            return {...task, task: currentTask?.task || task.task};
         }
         return task;
     });

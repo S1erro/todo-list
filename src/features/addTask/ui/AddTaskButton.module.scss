@@ -10,3 +10,32 @@
     background-color: var(--btn-bg-color-active);
   }
 }
+
+h2 {
+  margin: 10px;
+  font: var(--font-l);
+}
+
+.btnModal {
+  margin: 10px;
+  padding: 5px;
+  background-color: var(--btn-bg-color);
+
+  &:hover {
+    background-color: var(--btn-bg-color-hover);
+  }
+
+  &:active {
+    background-color: var(--btn-bg-color-active);
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

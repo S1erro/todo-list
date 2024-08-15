@@ -6,7 +6,8 @@ export const addTask = (input: string, tasks: Task[], setTasks: React.Dispatch<T
     if (input !== '') {
         const newTask: Task = {id: uuidv4(), task: input, isClosed: false};
         setTasks([newTask, ...tasks]);
+        return true;
     } else {
-        alert('Enter the task name')
+       return false;
     }
 }
