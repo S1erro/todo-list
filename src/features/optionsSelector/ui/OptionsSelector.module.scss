@@ -18,3 +18,7 @@
 .selectorBtn:active {
   color: #525050;
 }
+
+.active {
+  color: var(--btn-bg-color);
+}

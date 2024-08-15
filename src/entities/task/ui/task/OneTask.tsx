@@ -1,27 +1,25 @@
 import React, {FC} from 'react';
-import cls from "../../../../features/viewTasks/ui/AddTaskButton.module.scss";
-import Button from "shared/ui/Button/Button";
-import cn from "classnames";
-import {Task} from "entities/task"
-import {ReactComponent as DeleteIcon} from 'shared/icons/trash.svg';
-import {ReactComponent as NoteIcon} from 'shared/icons/note.svg';
+import cls from "./task.module.scss";
+import {Task} from "entities/task";
+import DeleteTask from "../deleteTask/DeleteTask";
+import EditTask from "../editTask/EditTask";
+import Checkbox from "../checkbox/Checkbox";
 
 interface TaskProps {
     task: Task,
-    checkboxChange: (id: string) => void,
-    deleteTask: (idToRemove: string) => void,
-    editTask: (id: string) => void,
+    tasks: Task[],
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-const OneTask: FC<TaskProps> = ({task,checkboxChange, deleteTask, editTask}) => {
+const OneTask: FC<TaskProps> = ({task , tasks, setTasks}) => {
 
     return (
         <div className={cls.taskContainer}>
-            <input
-                type="checkbox"
-                checked={task.isClosed}
-                className={cls["radio-btn"]}
-                onChange={() => checkboxChange(task.id)}
+            <Checkbox
+                id={task.id}
+                isClosed={task.isClosed}
+                tasks={tasks}
+                setTasks={setTasks}
             />
 
             <div className={cls["radio-container"]}>
@@ -29,18 +27,16 @@ const OneTask: FC<TaskProps> = ({task,checkboxChange, deleteTask, editTask}) => 
             </div>
 
             <div className={cls["btn-container"]}>
-                <Button
-                    customClassName={cls.btn}
-                    onClick={() => editTask(task.id)}
-                >
-                    <NoteIcon/>
-                </Button>
-                <Button
-                    customClassName={cn(cls.deleteBtn, cls.btn)}
-                    onClick={() => deleteTask(task.id)}
-                >
-                    <DeleteIcon/>
-                </Button>
+                <EditTask
+                    id={task.id}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                />
+                <DeleteTask
+                    id={task.id}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                />
             </div>
         </div>
     );

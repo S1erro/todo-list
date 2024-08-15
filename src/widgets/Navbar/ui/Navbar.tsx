@@ -8,7 +8,7 @@ interface TasksProps {
     setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-const Navbar: FC<TasksProps> = ({tasks, setTasks}) => {
+export const Navbar: FC<TasksProps> = ({tasks, setTasks}) => {
 
     const [input, setInput] = useState<string>('')
 
@@ -36,5 +36,3 @@ const Navbar: FC<TasksProps> = ({tasks, setTasks}) => {
         </header>
     );
 };
-
-export default Navbar;
