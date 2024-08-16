@@ -1,30 +1,42 @@
 import React, {ButtonHTMLAttributes, FC, useState} from 'react';
 import Button from "shared/ui/Button/Button";
 import {addTask} from "../model"
-import {Task} from "entities/task";
-import cls from "./AddTaskButton.module.scss"
+import {TaskType} from "entities/task";
+import cls from "./AddTask.module.scss"
 import Modal from "react-modal";
 
 interface addProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    input: string,
-    tasks: Task[],
-    setTasks: React.Dispatch<Task[]>,
-    resetInput: () => void
+    tasks: TaskType[],
+    setTasks: React.Dispatch<TaskType[]>,
 }
 
-const AddTaskButton: FC<addProps> = ({input, tasks, setTasks, resetInput}) => {
+const AddTask: FC<addProps> = ({tasks, setTasks}) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
+    const [input, setInput] = useState<string>('')
+
+    const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(event.target.value);
+    }
+
     return (
         <>
+            <input
+                type="text"
+                placeholder="Task To Be Done..."
+                className={cls.input}
+                onChange={inputChange}
+                value={input}
+            />
+
             <Button
                 type="button"
                 onClick={() => {
-                    if(!addTask(input, tasks, setTasks)) {
+                    if (!addTask(input, tasks, setTasks)) {
                         setModalIsOpen(true);
                     }
-                    resetInput();
+                    setInput('');
                 }}
                 customClassName={cls.btn}
             >
@@ -51,4 +63,4 @@ const AddTaskButton: FC<addProps> = ({input, tasks, setTasks, resetInput}) => {
     );
 };
 
-export default AddTaskButton;
+export default AddTask;

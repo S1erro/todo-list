@@ -1,3 +1,3 @@
-import AddTaskButton from "./ui/AddTaskButton"
+import AddTask from "./ui/AddTask"
 
-export default AddTaskButton;
+export default AddTask;

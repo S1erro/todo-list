@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import cls from './OptionsSelector.module.scss'
-import {Task} from "entities/task";
+import cls from './TasksFilter.module.scss'
+import {TaskType} from "entities/task";
 
 enum Filter {
     All,
@@ -9,12 +9,12 @@ enum Filter {
 }
 
 interface OptionsProps {
-    tasks: Task[],
+    tasks: TaskType[],
     filter: Filter,
     setFilter: React.Dispatch<React.SetStateAction<Filter>>
 }
 
-const OptionsSelector: FC<OptionsProps> = ({tasks, filter, setFilter}) => {
+const TasksFilter: FC<OptionsProps> = ({tasks, filter, setFilter}) => {
 
     const closedTasksCount = tasks.filter(task => task.isClosed).length;
 
@@ -50,4 +50,4 @@ const OptionsSelector: FC<OptionsProps> = ({tasks, filter, setFilter}) => {
     );
 };
 
-export default OptionsSelector;
+export default TasksFilter;

@@ -41,3 +41,22 @@
   justify-content: left;
   align-items: center;
 }
+
+.radio {
+  appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  border: 1px solid var(--main-color);
+
+  margin-right: 10px;
+
+  cursor: pointer;
+
+  &:checked {
+    background-color: var(--btn-bg-color);
+    border: none;
+  }
+}

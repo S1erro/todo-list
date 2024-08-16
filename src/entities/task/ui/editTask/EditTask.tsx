@@ -2,23 +2,19 @@ import React, {FC, useState} from 'react';
 import cls from "./EditTask.module.scss";
 import Button from "shared/ui/Button/Button";
 import {ReactComponent as NoteIcon} from 'shared/icons/note.svg';
-import {editTask} from "../../api";
-import {Task} from "../../model";
+import {TaskType} from "../../model";
 import Modal from "react-modal";
 
 interface EditProps {
-    id: string,
-    tasks: Task[],
-    setTasks: React.Dispatch<React.SetStateAction<Task[]>>
+    task: TaskType,
+    setTask: (task: TaskType) => void
 }
 
-const EditTask: FC<EditProps> = ({id, tasks, setTasks}) => {
+const EditTask: FC<EditProps> = ({task, setTask}) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const [currentTask, setCurrentTask] = useState<Task | undefined>(
-        tasks.find((task) => task.id === id)
-    );
+    const [editedTask, setEditedTask] = useState<string>(task.task);
 
     return (
         <>
@@ -26,7 +22,6 @@ const EditTask: FC<EditProps> = ({id, tasks, setTasks}) => {
                 customClassName={cls.btn}
                 onClick={() => {
                     setModalIsOpen(true);
-                    setCurrentTask(tasks.find((task) => task.id === id))
                 }}
             >
                 <NoteIcon/>
@@ -41,26 +36,28 @@ const EditTask: FC<EditProps> = ({id, tasks, setTasks}) => {
                 <h2>Edit Task</h2>
                 <input
                     type="text"
-                    value={currentTask?.task || ''}
+                    value={editedTask}
                     className={cls.input}
                     onChange={(event) =>
-                        setCurrentTask({...currentTask!, task: event.target.value})
+                        setEditedTask(event.target.value)
                     }
                 />
                 <div>
                     <Button
                         customClassName={cls.btnModal}
                         onClick={() => {
-                            setTasks([...tasks, ])
-                            editTask(currentTask, id, tasks, setTasks);
                             setModalIsOpen(false);
+                            setTask({...task, task: editedTask})
                         }}
                     >
                         Save
                     </Button>
                     <Button
                         customClassName={cls.btnModal}
-                        onClick={() => setModalIsOpen(false)}
+                        onClick={() => {
+                            setModalIsOpen(false)
+                            setEditedTask(task.task)
+                        }}
                     >
                         Cancel
                     </Button>
