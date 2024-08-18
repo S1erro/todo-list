@@ -1,4 +1,4 @@
-export interface TaskType {
+export interface Task {
     id: string;
     task: string;
     isClosed: boolean;

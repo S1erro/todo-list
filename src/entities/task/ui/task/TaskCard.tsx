@@ -1,16 +1,16 @@
 import React, {FC} from 'react';
-import cls from "./Task.module.scss";
-import {TaskType} from "entities/task";
+import cls from "./TaskCard.module.scss";
+import {Task} from "entities/task";
 import DeleteTask from "../deleteTask/DeleteTaskButton";
 import EditTask from "../editTask/EditTask";
 
 interface TaskProps {
-    task: TaskType,
-    setTask: (task: TaskType) => void,
+    task: Task,
+    setTask: (task: Task) => void,
     deleteTask: (id: string) => void,
 }
 
-const Task: FC<TaskProps> = ({task, setTask, deleteTask}) => {
+export const TaskCard: FC<TaskProps> = ({task, setTask, deleteTask}) => {
     return (
         <div className={cls.taskContainer}>
             <input
@@ -30,12 +30,10 @@ const Task: FC<TaskProps> = ({task, setTask, deleteTask}) => {
                     setTask={setTask}
                 />
                 <DeleteTask
-                    task={task}
+                    id={task.id}
                     deleteTask={deleteTask}
                 />
             </div>
         </div>
     );
 };
-
-export default Task;

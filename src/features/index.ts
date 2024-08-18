@@ -1,3 +1,3 @@
-export * from "./addTask"
-// export * from "./deleteTask"
-// export * from "./editTask"
+import TasksFilter from "./tasksFilter"
+
+export default TasksFilter;

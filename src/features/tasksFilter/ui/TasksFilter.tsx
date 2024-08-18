@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import cls from './TasksFilter.module.scss'
-import {TaskType} from "entities/task";
+import {Task} from "entities/task";
 
 enum Filter {
     All,
@@ -9,7 +9,7 @@ enum Filter {
 }
 
 interface OptionsProps {
-    tasks: TaskType[],
+    tasks: Task[],
     filter: Filter,
     setFilter: React.Dispatch<React.SetStateAction<Filter>>
 }

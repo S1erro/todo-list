@@ -1,3 +1,3 @@
-import optionsSelector from "./ui/TasksFilter";
+import TasksFilter from "./ui/TasksFilter";
 
-export default optionsSelector;
+export default TasksFilter;

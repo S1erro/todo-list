@@ -1,16 +1,13 @@
 import React, {ButtonHTMLAttributes, FC, useState} from 'react';
 import Button from "shared/ui/Button/Button";
-import {addTask} from "../model"
-import {TaskType} from "entities/task";
 import cls from "./AddTask.module.scss"
 import Modal from "react-modal";
 
 interface addProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    tasks: TaskType[],
-    setTasks: React.Dispatch<TaskType[]>,
+    addTask: (input: string) => boolean
 }
 
-const AddTask: FC<addProps> = ({tasks, setTasks}) => {
+const AddTask: FC<addProps> = ({addTask}) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -20,8 +17,15 @@ const AddTask: FC<addProps> = ({tasks, setTasks}) => {
         setInput(event.target.value);
     }
 
+    const addTaskHandler = (input: string) => {
+        if (!addTask(input)) {
+            setModalIsOpen(true);
+        }
+        setInput('');
+    }
+
     return (
-        <>
+        <header className={cls.header}>
             <input
                 type="text"
                 placeholder="Task To Be Done..."
@@ -32,12 +36,7 @@ const AddTask: FC<addProps> = ({tasks, setTasks}) => {
 
             <Button
                 type="button"
-                onClick={() => {
-                    if (!addTask(input, tasks, setTasks)) {
-                        setModalIsOpen(true);
-                    }
-                    setInput('');
-                }}
+                onClick={() => addTaskHandler(input)}
                 customClassName={cls.btn}
             >
                 Add
@@ -59,7 +58,7 @@ const AddTask: FC<addProps> = ({tasks, setTasks}) => {
                 </Button>
 
             </Modal>
-        </>
+        </header>
     );
 };
 

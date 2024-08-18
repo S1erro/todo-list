@@ -1,12 +1,12 @@
 import React, {FC, useState} from 'react';
-import {TaskType} from "entities/task";
-import Task from "entities/task/ui/task/Task";
-import TasksFilter from "features/tasksFilter";
+import {Task} from "entities/task";
+import {TaskCard} from "entities/task";
+import TasksFilter from "features";
 
 
 interface ViewProps {
-    tasks: TaskType[],
-    setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
+    tasks: Task[],
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
 enum Filter {
@@ -29,7 +29,7 @@ export const ViewTasks: FC<ViewProps> = ({tasks, setTasks}) => {
         }
     });
 
-    const updateTask = function (updatedTask: TaskType) {
+    const updateTask = function (updatedTask: Task) {
         setTasks(tasks =>
             tasks.map(task => task.id === updatedTask.id ? updatedTask : task))
     }
@@ -42,7 +42,7 @@ export const ViewTasks: FC<ViewProps> = ({tasks, setTasks}) => {
         <div>
             <TasksFilter tasks={tasks} filter={filter} setFilter={setFilter}/>
             {filteredTasks.map((taskObj) => (
-                <Task
+                <TaskCard
                     key={taskObj.id}
                     task={taskObj}
                     setTask={updateTask}

@@ -2,19 +2,24 @@ import React, {FC, useState} from 'react';
 import cls from "./EditTask.module.scss";
 import Button from "shared/ui/Button/Button";
 import {ReactComponent as NoteIcon} from 'shared/icons/note.svg';
-import {TaskType} from "../../model";
+import {Task} from "../../model";
 import Modal from "react-modal";
 
 interface EditProps {
-    task: TaskType,
-    setTask: (task: TaskType) => void
+    task: Task,
+    setTask: (task: Task) => void
 }
 
 const EditTask: FC<EditProps> = ({task, setTask}) => {
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
     const [editedTask, setEditedTask] = useState<string>(task.task);
+
+    const cancelHandler = () => {
+        setModalIsOpen(false)
+        setEditedTask(task.task)
+    }
 
     return (
         <>
@@ -54,10 +59,7 @@ const EditTask: FC<EditProps> = ({task, setTask}) => {
                     </Button>
                     <Button
                         customClassName={cls.btnModal}
-                        onClick={() => {
-                            setModalIsOpen(false)
-                            setEditedTask(task.task)
-                        }}
+                        onClick={cancelHandler}
                     >
                         Cancel
                     </Button>
