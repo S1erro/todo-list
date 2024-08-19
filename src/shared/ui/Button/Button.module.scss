@@ -1,0 +1,15 @@
+.Button {
+  border: none;
+  border-radius: 10px;
+  font: var(--font-m);
+  color: var(--btn-text-color);
+  cursor: pointer;
+
+  &:hover {
+    transition: background-color 0.1s ease-in;
+  }
+
+  &:active {
+    transition: background-color 0.05s ease-in;
+  }
+}
